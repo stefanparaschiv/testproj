@@ -1,4 +1,4 @@
-package com.tremend.project.model;
+package com.tremend.project.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
