@@ -1,20 +1,23 @@
 package com.tremend.project.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "pref_temp")
     private int prefTemp;
+    @Column(name = "on_time")
     private Date onTime;
+    @Column(name = "off_time")
     private Date offTime;
 
     public int getId() {
