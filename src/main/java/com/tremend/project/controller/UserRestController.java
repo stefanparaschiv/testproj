@@ -1,6 +1,6 @@
 package com.tremend.project.controller;
 
-import com.tremend.project.entity.User;
+import com.tremend.project.entity.UserEntity;
 import com.tremend.project.entity.UserNotFoundException;
 import com.tremend.project.entity.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,37 +15,37 @@ public class UserRestController {
     private UserRepository repository;
 
     @GetMapping("/users")
-    List<User> all() {
+    public List<UserEntity> all() {
         return repository.findAll();
     }
 
     @GetMapping("/users/{id}")
-    User one(@PathVariable Long id) {
+    public UserEntity one(@PathVariable Long id) {
         return repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
     @PostMapping("/users/{id}")
-    User newUser (@RequestBody User newUser) {
-        return repository.save(newUser);
+    public UserEntity newUser (@RequestBody UserEntity newUserEntity) {
+        return repository.save(newUserEntity);
     }
 
     @PutMapping("/users/{id}")
-    User updateUser (@RequestBody User newUser, @PathVariable Long id) {
-        return repository.findById(id).map(user -> {
-            user.setFirstName(user.getFirstName());
-            user.setLastName(user.getLastName());
-            user.setPrefTemp(user.getPrefTemp());
-            user.setOnTime(user.getOnTime());
-            user.setOffTime(user.getOffTime());
-            return repository.save(user);
+    public UserEntity updateUser (@RequestBody UserEntity newUserEntity, @PathVariable Long id) {
+        return repository.findById(id).map(userEntity -> {
+            userEntity.setFirstName(userEntity.getFirstName());
+            userEntity.setLastName(userEntity.getLastName());
+            userEntity.setPrefTemp(userEntity.getPrefTemp());
+            userEntity.setOnTime(userEntity.getOnTime());
+            userEntity.setOffTime(userEntity.getOffTime());
+            return repository.save(userEntity);
         }).orElseGet(() -> {
-            newUser.setId(id);
-            return repository.save(newUser);
+            newUserEntity.setId(id);
+            return repository.save(newUserEntity);
         });
     }
 
     @DeleteMapping("/users/{id}")
-    void deleteUser (@PathVariable Long id) {
+    public void deleteUser (@PathVariable Long id) {
         repository.deleteById(id);
     }
 
