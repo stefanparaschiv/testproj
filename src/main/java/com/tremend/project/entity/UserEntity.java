@@ -1,14 +1,13 @@
 package com.tremend.project.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalTime;
 
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Column(name = "first_name")
     private String firstName;
@@ -17,9 +16,9 @@ public class UserEntity {
     @Column(name = "pref_temp")
     private int prefTemp;
     @Column(name = "on_time")
-    private Time onTime;
+    private LocalTime onTime;
     @Column(name = "off_time")
-    private Time offTime;
+    private LocalTime offTime;
 
     public Long getId() {
         return id;
@@ -53,19 +52,19 @@ public class UserEntity {
         this.prefTemp = prefTemp;
     }
 
-    public Time getOnTime() {
+    public LocalTime getOnTime() {
         return onTime;
     }
 
-    public void setOnTime(Time onTime) {
+    public void setOnTime(LocalTime onTime) {
         this.onTime = onTime;
     }
 
-    public Time getOffTime() {
+    public LocalTime getOffTime() {
         return offTime;
     }
 
-    public void setOffTime(Time offTime) {
+    public void setOffTime(LocalTime offTime) {
         this.offTime = offTime;
     }
 }
