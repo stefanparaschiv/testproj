@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Adding new user</title>
 </head>
 <body>
-New userEntity
-</body>
+<h1>Form</h1>
+<form action="#" th:action="@{/users}" th:object="${UserEntity}" method="post">
+    <p>Id: <input type="text" th:field="*{id}" /></p>
+    <p>First Name: <input type="text" th:field="*{firstName}" />
+    <p>Last Name: <input type="text" th:field="*{lastName}" /></p>
+    <p>Pref Temperature: <input type="text" th:field="*{prefTemp}" /></p>
+    <p>On Time: <input type="text" th:field="*{onTime}" /></p>
+    <p>Off Time: <input type="text" th:field="*{offTime}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form></body>
 </html>
