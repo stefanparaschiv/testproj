@@ -4,18 +4,21 @@ import com.tremend.project.entity.UserEntity;
 import com.tremend.project.entity.UserNotFoundException;
 import com.tremend.project.entity.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class UserRestController {
 
     @Autowired
     private UserRepository repository;
 
     @GetMapping("/users")
-    public List<UserEntity> all() {
+    public List<UserEntity> all(Model model) {
+        model.addAttribute("all-users", new UserEntity());
         return repository.findAll();
     }
 
@@ -25,7 +28,8 @@ public class UserRestController {
     }
 
     @PostMapping("/users/{id}")
-    public UserEntity newUser (@RequestBody UserEntity newUserEntity) {
+    public UserEntity newUser (@RequestBody UserEntity newUserEntity, Model model) {
+        model.addAttribute("UserEntity", new UserEntity());
         return repository.save(newUserEntity);
     }
 
@@ -48,5 +52,28 @@ public class UserRestController {
     public void deleteUser (@PathVariable Long id) {
         repository.deleteById(id);
     }
+
+    @DeleteMapping("/users/all")
+    public void deleteAllUsers () {
+        repository.deleteAll();
+    }
+
+
+    @RequestMapping("new-user")
+    public String newUser (Model model) {
+        model.addAttribute("UserEntity", new UserEntity());
+        return "new-user";
+    }
+
+    @RequestMapping("/all-users")
+    public String allUsers() {
+        return "all-users";
+    }
+
+    @RequestMapping("/")
+    public String index(){
+        return "index";
+    }
+
 
 }
