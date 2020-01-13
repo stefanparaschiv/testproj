@@ -16,12 +16,12 @@ public class UserService {
     UserRepository repository;
 
     public List<UserEntity> getAllUsers() {
-        List<UserEntity> result = (List<UserEntity>) repository.findAll();
+        List<UserEntity> result = repository.findAll();
 
         if (result.size()>0) {
             return result;
         } else {
-            return new ArrayList<UserEntity>();
+            return new ArrayList<>();
         }
     }
 
