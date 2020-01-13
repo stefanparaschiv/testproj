@@ -1,5 +1,6 @@
-package com.tremend.project.entity;
+package com.tremend.project.model.repository;
 
+import com.tremend.project.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
