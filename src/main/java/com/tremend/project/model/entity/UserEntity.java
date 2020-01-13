@@ -1,4 +1,7 @@
-package com.tremend.project.entity;
+package com.tremend.project.model.entity;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -7,7 +10,7 @@ import java.time.LocalTime;
 @Table(name = "USERS")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "first_name")
     private String firstName;
@@ -16,7 +19,9 @@ public class UserEntity {
     @Column(name = "pref_temp")
     private int prefTemp;
     @Column(name = "on_time")
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime onTime;
+    @DateTimeFormat(pattern = "HH:mm")
     @Column(name = "off_time")
     private LocalTime offTime;
 

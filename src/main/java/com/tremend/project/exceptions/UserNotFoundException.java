@@ -1,6 +1,4 @@
-package com.tremend.project.entity;
-
-import java.util.EmptyStackException;
+package com.tremend.project.exceptions;
 
 public class UserNotFoundException extends RuntimeException{
     public UserNotFoundException(Long id) {
